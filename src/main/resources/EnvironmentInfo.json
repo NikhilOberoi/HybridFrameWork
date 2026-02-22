@@ -1,0 +1,12 @@
+{
+  "web_url": "https://www.amazon.in",
+  "browser_type": "Chrome",
+  "web_timeout" :10,
+  "database_host" : "TEst",
+  "database_username" : "UserName",
+  "database_password" : "UserName",
+  "api_endpoint" : "htt",
+  "api_tokenURL" : "",
+  "api_clientSecret" : "",
+  "ap_clientId" : ""
+}
