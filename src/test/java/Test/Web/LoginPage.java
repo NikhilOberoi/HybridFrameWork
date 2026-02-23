@@ -9,7 +9,7 @@ public class LoginPage {
 
     public static void main(String[] args){
         System.out.println("driver.getTitle()");
-        System.out.println(ExtendedDriver.driver.getTitle());
+        System.out.println(driver.getTitle());
        driver.navigate().refresh();
     }
 }
