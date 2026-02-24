@@ -1,5 +1,7 @@
 {
   "web_url": "https://www.amazon.in",
+  "user_name": "Nikhil Oberoi",
+  "user_password" : "7987adad@",
   "browser_type": "Chrome",
   "web_timeout" :10,
   "database_host" : "TEst",
@@ -8,5 +10,10 @@
   "api_endpoint" : "htt",
   "api_tokenURL" : "",
   "api_clientSecret" : "",
-  "ap_clientId" : ""
+  "ap_clientId" : "",
+  "report_path" : "\\test\\resources\\Reports\\",
+  "env_name" : "UAT1",
+  "build_version": "V1.02.01",
+  "operating_systme": "Windows"
+
 }

@@ -72,4 +72,23 @@ public class EnvironmentInfo {
     public static String getRestAPIEndPoint(){
         return environmentInfo.get("api_endpoint").asText();
     }
+    public static String getReportPath(){
+        return environmentInfo.get("report_path").asText();
+    }
+    public static String getEnvironmentName(){
+        return environmentInfo.get("env_name").asText();
+    }
+    public static String getBuildVersion(){
+        return environmentInfo.get("build_version").asText();
+    }
+    public static String getUserName(){
+        return environmentInfo.get("user_name").asText();
+    }
+    public static String getUserPassword(){
+        return environmentInfo.get("user_password").asText();
+    }
+    public static String getOperatingSystem(){
+        return environmentInfo.get("operating_systme").asText();
+    }
+
 }

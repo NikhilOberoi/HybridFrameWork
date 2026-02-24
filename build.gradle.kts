@@ -48,6 +48,9 @@ dependencies {
     // Use "com.github.User:Repo:Tag" format
     // Example: implementation("com.github.google:guava:30.0-jre")
     //implementation("com.github.User:Repo:Tag")
+
+    // ExtentReports for test reporting
+    implementation("com.aventstack:extentreports:5.1.1")
 }
 
 tasks.test {
