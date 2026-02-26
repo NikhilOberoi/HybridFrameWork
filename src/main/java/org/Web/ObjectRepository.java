@@ -2,12 +2,13 @@ package org.Web;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 public class ObjectRepository {
 
-    Properties locators = new Properties();
+    public static Properties locators = new Properties();
     final static String locatorRepoFileName = "Repository.properties";
 
     // Get locator Repo File Path
@@ -17,9 +18,13 @@ public class ObjectRepository {
     }
 
     // Read all locators:
-    private void readAllLocators() throws IOException {
+    public static void readAllLocators() {
         File locatorFile  = new File(getLocatorRepoFilePath());
-        FileInputStream inputStream = new FileInputStream(locatorFile);
-        locators.load(inputStream);
+        try{
+            FileInputStream inputStream = new FileInputStream(locatorFile);
+            locators.load(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

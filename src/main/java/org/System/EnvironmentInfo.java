@@ -5,9 +5,13 @@ import org.Browser.BrowserType;
 
 import java.io.File;
 import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public class EnvironmentInfo {
+
+    private static final Logger log = LogManager.getLogger(EnvironmentInfo.class);
     //read environment info from .prop / .json file
     final static String environmentFileName = "EnvironmentInfo.json";
     private static JsonNode environmentInfo = readEnvironmentVariables();
@@ -23,7 +27,7 @@ public class EnvironmentInfo {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode environmentDetails = null;
         try{
-            System.out.println("Reading Environment info from : "+getEnvironmentFilePath());
+            log.info("Reading Environment info from : {}", getEnvironmentFilePath());
             File file = new File(getEnvironmentFilePath());
             environmentDetails = objectMapper.readTree(file);
         }

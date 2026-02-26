@@ -11,7 +11,7 @@
   "api_tokenURL" : "",
   "api_clientSecret" : "",
   "ap_clientId" : "",
-  "report_path" : "\\test\\resources\\Reports\\",
+  "report_path" : "\\src\\test\\resources\\Reports\\",
   "env_name" : "UAT1",
   "build_version": "V1.02.01",
   "operating_systme": "Windows"

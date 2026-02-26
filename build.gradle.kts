@@ -51,6 +51,13 @@ dependencies {
 
     // ExtentReports for test reporting
     implementation("com.aventstack:extentreports:5.1.1")
+
+    // Import the Log4j BOM to manage versions
+    implementation(platform("org.apache.logging.log4j:log4j-bom:2.23.1")) // Use the latest version
+
+    // Add Log4j API and Core dependencies
+    implementation("org.apache.logging.log4j:log4j-api")
+    runtimeOnly("org.apache.logging.log4j:log4j-core") // Use runtimeOnly for the core implementation in an application
 }
 
 tasks.test {
