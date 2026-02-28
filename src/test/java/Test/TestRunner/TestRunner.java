@@ -4,7 +4,12 @@ import org.Browser.ExtendedDriver;
 import org.System.Reporter;
 import org.Web.ObjectRepository;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+
+
+import java.lang.reflect.Method;
 
 import static org.Browser.ExtendedDriver.driver;
 
@@ -33,5 +38,12 @@ public class TestRunner {
         Reporter.FinaliseReport();
 
         //Database Connections
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    public static void setup(Method method) {
+    String testNamae = method.getAnnotation(Test.class).testName();
+    String testDescription = method.getAnnotation(Test.class).description();
+        Reporter.CreateTestScenario(testNamae, testNamae);
     }
 }

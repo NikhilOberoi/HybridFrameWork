@@ -55,6 +55,8 @@ public class Reporter {
     }
 
     public static void ReportPass(String Title, String Message, boolean Screenshot){
+        CreateTestCase(Title, Message);
+
         if(Screenshot)
             extentTest.pass(Title + ": " + Message).addScreenCaptureFromPath(getScreenshotPath());
         else

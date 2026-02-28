@@ -16,20 +16,21 @@ import static org.Browser.ExtendedDriver.driver;
 
 public class LoginPage extends TestRunner {
     public static Logger log = LogManager.getLogger(LoginPage.class);
-    @Test(groups = {"Smoke", "Sanity"})
-    public static void Login() throws InterruptedException {
-        //chromeDriver.findElement(By.xpath("//a[@id='nav-logo-sprites']"));
-        Element.elementToBeClickable("homepage.languagedropdown").click();
-        //Element.getWebElement("homepage.languagedropdown").click();
-        Element.elementToBeClickable("homepage.languagecancel").click();
+    @Test(testName = "Click Language Button", description = "Validated Language Buttion Functionality", groups = {"Smoke", "Sanity"})
+    public static void Login()  {
 
-        Reporter.CreateTestScenario("1212", "Login Scenario");
-        Reporter.CreateTestCase("Test Case-1222", "Login Test Case");
-        Reporter.ReportPass("Test Login ", "Test is passed", true);
-        Reporter.ReportPass("Test Login1 ", "Test is passed", true);
-        Reporter.ReportFail("Test Login2 ", "Test is Failed", true);
+        Element.elementToBeClickable("homepage.languagedropdown").click();
+        //Element.elementToBeClickable("homepage.languagecancel").click();
+
+        Reporter.ReportPass("Validate Language Button", "Language button is clicked successfully", true);
+       //Reporter.ReportFail("Test Login_1 ", "Test is Failed", true);
     }
-    public static void main(String[] args) throws InterruptedException {
+    @Test(testName = "Cancle Language Button", description = "Validated Language Cancel Button", groups = {"Smoke", "Sanity"})
+    public static void Login2()  {
+        Element.elementToBeClickable("homepage.languagecancel").click();
+        Reporter.ReportPass("Validate Cancel Button on Language Page", "CancelButton Appeared successfully", true);
+    }
+    public static void main(String[] args){
         initializeTest();
         Login();
         clearResources();
