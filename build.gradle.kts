@@ -35,7 +35,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
 
     // For TestNG (optional, if preferred):
-    // testImplementation("org.testng:testng:7.4.0")
+    testImplementation("org.testng:testng:7.12.0")
 
 
     // Jackson Core - Json Reader
@@ -43,7 +43,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
 
     // WebDriverManager for automatic browser driver management
-    //testImplementation("io.github.bonigarcia:webdrivermanager:5.6.3")
+    testImplementation("io.github.bonigarcia:webdrivermanager:5.6.3")
 
     // Use "com.github.User:Repo:Tag" format
     // Example: implementation("com.github.google:guava:30.0-jre")

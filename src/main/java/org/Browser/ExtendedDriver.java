@@ -1,24 +1,32 @@
 package org.Browser;
 import org.System.EnvironmentInfo;
+import org.Web.Element;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 
 public class ExtendedDriver {
-
+    public static Logger log = LogManager.getLogger(ExtendedDriver.class);
     static BrowserType Browser = EnvironmentInfo.getBrowserType();
     public static String CurrentUrl = EnvironmentInfo.getWebURL();
-    public static WebDriver driver = InitDriver(Browser);
+    public static WebDriver driver = null;
+    public static WebDriverWait Wait = null;
 
     // Initialize the given driver
-    private static WebDriver InitDriver(BrowserType browser) {
+    public static void InitDriver() {
         // PurgeOld Session Data
-
-        WebDriver driver = null;
-        switch (browser) {
+        log.info("Initializing Browser: "+ Browser.toString());
+        switch (Browser) {
             case Chrome:
                 driver = ChromeInit(getChromeOptions());
                 break;
@@ -31,8 +39,13 @@ public class ExtendedDriver {
             case EdgeHeadless:
                 driver = EdgeInit(getEdgeHeadlessOptions());
                 break;
+            default:
+                //Stop Execution;
+                break;
         }
-        return driver;
+        if(driver != null)
+            DriverWait();
+        log.info("Browser Initialized Successfully: "+ Browser.toString());
     }
 
     // Setup Browser Options:
@@ -86,5 +99,10 @@ public class ExtendedDriver {
         WebDriver edgeDriver = new EdgeDriver(options);
         edgeDriver.get(CurrentUrl);
         return edgeDriver;
+    }
+
+    private static void  DriverWait(){
+        log.info("Initializing explicit wait.");
+        Wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 }
