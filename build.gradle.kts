@@ -69,6 +69,18 @@ tasks.test {
     testLogging.showStandardStreams = true
 }
 
+val smokeTests by tasks.registering(Test::class) {
+    useTestNG() {
+        suites("src/test/resources/TestNG_Runner/smoke.xml")
+    }
+}
+
+val regressionTests by tasks.registering(Test::class) {
+    useTestNG() {
+        suites("src/test/resources/TestNG_Runner/regression.xml")
+    }
+}
+
 // Performs TestNG test
 // Define a new Test task for TestNG
 //val testNG by tasks.registering(Test::class) {

@@ -7,17 +7,11 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
-
 import java.lang.reflect.Method;
 
 import static org.Browser.ExtendedDriver.driver;
 
 public class TestRunner {
-
- // Load Environment Variables
-    // initialize Rporter
-    // initialize driver
 
     // We need to set attribute 'alwaysRun' as true as we are using groups in out test class
     // Otherwise BeforeSuite will not execute
@@ -34,9 +28,8 @@ public class TestRunner {
     // Otherwise AfterSuite will not execute
     @AfterSuite(alwaysRun = true)
     public static void clearResources(){
-        //driver.quit();
+        driver.quit();
         Reporter.FinaliseReport();
-
         //Database Connections
     }
 
