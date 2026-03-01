@@ -72,12 +72,16 @@ tasks.test {
 val smokeTests by tasks.registering(Test::class) {
     useTestNG() {
         suites("src/test/resources/TestNG_Runner/smoke.xml")
+        // Optional: Log standard streams to Jenkins console output
+        testLogging.showStandardStreams = true
     }
 }
 
 val regressionTests by tasks.registering(Test::class) {
     useTestNG() {
         suites("src/test/resources/TestNG_Runner/regression.xml")
+        // Optional: Log standard streams to Jenkins console output
+        testLogging.showStandardStreams = true
     }
 }
 
