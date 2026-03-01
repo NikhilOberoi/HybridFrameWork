@@ -60,6 +60,17 @@ dependencies {
     runtimeOnly("org.apache.logging.log4j:log4j-core") // Use runtimeOnly for the core implementation in an application
 }
 
+// Performs Junit test
 tasks.test {
-    useJUnitPlatform()
+    useTestNG()
 }
+
+// Performs TestNG test
+// Define a new Test task for TestNG
+//val testNG by tasks.registering(Test::class) {
+//    useTestNG()
+//    // Optional: point to testng.xml file
+//    // options.suites("src/test/resources/testng.xml")
+//    // Filter to only include TestNG annotated classes (optional if file separation is used)
+//    // includes = listOf("**/TestNG*.class")
+//}
