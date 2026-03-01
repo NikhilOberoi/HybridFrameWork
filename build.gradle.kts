@@ -62,7 +62,9 @@ dependencies {
 
 // Performs Junit test
 tasks.test {
-    useTestNG()
+    useTestNG(){
+        suites("src/test/resources/TestNG_Runner/Login.xml")
+    }
 }
 
 // Performs TestNG test
