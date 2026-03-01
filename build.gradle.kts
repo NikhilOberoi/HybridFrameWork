@@ -65,6 +65,8 @@ tasks.test {
     useTestNG(){
         suites("src/test/resources/TestNG_Runner/Login.xml")
     }
+    // Optional: Log standard streams to Jenkins console output
+    testLogging.showStandardStreams = true
 }
 
 // Performs TestNG test
