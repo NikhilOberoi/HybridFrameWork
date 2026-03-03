@@ -37,7 +37,6 @@ dependencies {
     // For TestNG (optional, if preferred):
     testImplementation("org.testng:testng:7.12.0")
 
-
     // Jackson Core - Json Reader
     implementation("org.json:json:20231013")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
@@ -70,6 +69,9 @@ tasks.test {
 }
 
 val smokeTests by tasks.registering(Test::class) {
+
+    group = "Verification" // Assign a group
+
     useTestNG() {
         suites("src/test/resources/TestNG_Runner/smoke.xml")
         // Optional: Log standard streams to Jenkins console output
@@ -78,6 +80,8 @@ val smokeTests by tasks.registering(Test::class) {
 }
 
 val regressionTests by tasks.registering(Test::class) {
+    group = "Verification" // Assign a group
+
     useTestNG() {
         suites("src/test/resources/TestNG_Runner/regression.xml")
         // Optional: Log standard streams to Jenkins console output

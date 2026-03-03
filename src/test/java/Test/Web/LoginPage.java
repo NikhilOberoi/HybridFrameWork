@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class LoginPage extends TestRunner {
     public static Logger log = LogManager.getLogger(LoginPage.class);
-    @Test(testName = "Click Language Button", description = "Validated Language Buttion Functionality", groups = {"Smoke"})
+    @Test(testName = "Click Language Button", description = "Validated Language Buttion Functionality", groups = {"Sanity"})
     public static void SmokeTest()  {
 
         Element.elementToBeClickable("homepage.languagedropdown").click();
