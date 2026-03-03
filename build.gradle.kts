@@ -77,6 +77,9 @@ val smokeTests by tasks.registering(Test::class) {
         // Optional: Log standard streams to Jenkins console output
         testLogging.showStandardStreams = true
     }
+        // Ensure the task depends on the 'testClasses' from the test source set
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
 }
 
 val regressionTests by tasks.registering(Test::class) {
@@ -87,6 +90,26 @@ val regressionTests by tasks.registering(Test::class) {
         // Optional: Log standard streams to Jenkins console output
         testLogging.showStandardStreams = true
     }
+
+    // Ensure the task depends on the 'testClasses' from the test source set
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
+}
+
+tasks.register("sanityTests", Test::class) {
+    useTestNG { // Tells Gradle to use TestNG
+        // Specify the path to your suite XML file
+        suites("src/test/resources/TestNG_Runner/smoke.xml")
+        useDefaultListeners = true // Optional: enables TestNG's default reporters
+    }
+    // Optional: show standard streams (like System.out.println) in the console output
+    testLogging {
+        showStandardStreams = true
+        events("PASSED", "FAILED", "SKIPPED") //
+    }
+    // Ensure the task depends on the 'testClasses' from the test source set
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
 }
 
 // Performs TestNG test
