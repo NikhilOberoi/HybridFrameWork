@@ -59,38 +59,52 @@ dependencies {
     runtimeOnly("org.apache.logging.log4j:log4j-core") // Use runtimeOnly for the core implementation in an application
 }
 
-// Performs Junit test
+// Performs testNG test
 tasks.test {
-    useTestNG(){
-        suites("src/test/resources/TestNG_Runner/Login.xml")
+    val suiteFile = System.getProperty("testSuite", "Login.xml")
+    useTestNG {
+        suites("src/test/resources/TestNG_Runner/$suiteFile")
     }
     // Optional: Log standard streams to Jenkins console output
     testLogging.showStandardStreams = true
 }
 
 val smokeTests by tasks.registering(Test::class) {
-
     group = "Verification" // Assign a group
-
-    useTestNG() {
+    useTestNG {
         suites("src/test/resources/TestNG_Runner/smoke.xml")
         // Optional: Log standard streams to Jenkins console output
         testLogging.showStandardStreams = true
     }
-        // Ensure the task depends on the 'testClasses' from the test source set
+    // Ensure the task depends on the 'testClasses' from the test source set
     testClassesDirs = sourceSets.test.get().output.classesDirs
     classpath = sourceSets.test.get().runtimeClasspath
 }
 
 val regressionTests by tasks.registering(Test::class) {
     group = "Verification" // Assign a group
-
-    useTestNG() {
+    useTestNG {
         suites("src/test/resources/TestNG_Runner/regression.xml")
         // Optional: Log standard streams to Jenkins console output
         testLogging.showStandardStreams = true
     }
 
+    // Ensure the task depends on the 'testClasses' from the test source set
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
+}
+
+tasks.register("sanityTests", Test::class) {
+    useTestNG { // Tells Gradle to use TestNG
+        // Specify the path to your suite XML file
+        suites("src/test/resources/TestNG_Runner/smoke.xml")
+        useDefaultListeners = true // Optional: enables TestNG's default reporters
+    }
+    // Optional: show standard streams (like System.out.println) in the console output
+    testLogging {
+        showStandardStreams = true
+        events("PASSED", "FAILED", "SKIPPED") //
+    }
     // Ensure the task depends on the 'testClasses' from the test source set
     testClassesDirs = sourceSets.test.get().output.classesDirs
     classpath = sourceSets.test.get().runtimeClasspath

@@ -9,19 +9,23 @@ import org.testng.annotations.Test;
 
 public class LoginPage extends TestRunner {
     public static Logger log = LogManager.getLogger(LoginPage.class);
-    @Test(testName = "Click Language Button", description = "Validated Language Buttion Functionality", groups = {"Sanity"})
-    public static void SmokeTest()  {
 
+    @Test(testName = "Click Language Button", description = "Validated Language Buttion Functionality", groups = {"Sanity"})
+    public static void SmokeTest() {
+        log.info("Running Smoke Suite Test Cases.");
         Element.elementToBeClickable("homepage.languagedropdown").click();
         Element.elementToBeClickable("homepage.languagecancel").click();
         Reporter.ReportPass("Validate Cancel Button on Language Page", "CancelButton Appeared successfully", true);
 
         Reporter.ReportPass("Validate Language Button", "Language button is clicked successfully", true);
+        log.info("Smoke Suite Test Cases execution completed.");
     }
+
     @Test(testName = "Regression Test", description = "Validated Language Cancel Button", groups = {"Regression"})
-    public static void Regression()  {
+    public static void Regression() {
+        log.info("Running Regression Suite Test Cases.");
         Element.elementToBeClickable("homepage.searchbox").sendKeys("Washing Machine");
         Element.elementToBeClickable("homepage.searchbutton").sendKeys("Washing Machine");
-
-}
+        log.info("Regression Suite Test Cases execution completed.");
+    }
 }
