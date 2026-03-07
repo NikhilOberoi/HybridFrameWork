@@ -1,5 +1,9 @@
 pipeline{
     agent any
+	    tools {
+        // 'JDK_17_HOME' must match the name configured in 'Manage Jenkins > Global Tool Configuration'
+        jdk 'JAVA_HOME'
+    }
     stages{
         stage('Clean')
         {
