@@ -1,0 +1,24 @@
+pipeline{
+    agent any
+    stages{
+        stage('Clean')
+        {
+            steps{
+                 bat 'gradlew.bat clean'
+            }
+        }
+        stage('Execute All Tests')
+        {
+            parallel{
+                stage('Smoke Test')
+                {
+                    steps{bat 'gradlew.bat smokeTests'}
+                }
+                stage('Regression Test')
+                {
+                    steps{bat 'gradlew.bat regressionTests'}
+                }
+            }
+        }
+    }
+}

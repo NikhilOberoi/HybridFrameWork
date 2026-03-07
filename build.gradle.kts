@@ -109,13 +109,3 @@ tasks.register("sanityTests", Test::class) {
     testClassesDirs = sourceSets.test.get().output.classesDirs
     classpath = sourceSets.test.get().runtimeClasspath
 }
-
-// Performs TestNG test
-// Define a new Test task for TestNG
-//val testNG by tasks.registering(Test::class) {
-//    useTestNG()
-//    // Optional: point to testng.xml file
-//    // options.suites("src/test/resources/testng.xml")
-//    // Filter to only include TestNG annotated classes (optional if file separation is used)
-//    // includes = listOf("**/TestNG*.class")
-//}
