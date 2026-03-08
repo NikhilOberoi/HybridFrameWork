@@ -27,6 +27,6 @@ public class LoginPage extends TestRunner {
         Element.elementToBeClickable("homepage.searchbox").sendKeys("Washing Machine");
         Element.elementToBeClickable("homepage.searchbutton").sendKeys("Washing Machine");
         log.info("Regression Suite Test Cases execution completed.");
-         Reporter.ReportPass("Validate Search Box", "Search successfully.", true);
+         Reporter.ReportPass("Validate Search Box", "Search successfully", true);
     }
 }
