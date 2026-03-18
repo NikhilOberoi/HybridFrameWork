@@ -5,6 +5,8 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 
 import java.io.File;
@@ -81,6 +83,9 @@ public class Reporter {
         screenshotPath = screenshotPath + "\\image_" + ScreenshotIndex++ +".png";
         System.out.println("Screen shot Path" + screenshotPath);
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        // In Firefox browser we can take full page screenshot
+        //((FirefoxDriver) driver).getFullPageScreenshotAs(OutputType.FILE);
+
         // Use FileHandler to copy the file to a desired location
         try{
             FileHandler.copy(screenshotFile, new File(screenshotPath));

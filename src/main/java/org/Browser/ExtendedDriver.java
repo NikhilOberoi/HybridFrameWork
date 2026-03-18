@@ -1,18 +1,16 @@
 package org.Browser;
 import org.System.EnvironmentInfo;
-import org.Web.Element;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 
 
 public class ExtendedDriver {
@@ -55,6 +53,8 @@ public class ExtendedDriver {
         options.addArguments("--start-maximized");
         options.addArguments("--disable-gpu");
         options.addArguments("--ignore-certificate-errors");
+        options.setScriptTimeout(Duration.of(5, ChronoUnit.SECONDS));
+        log.info("Running Test Suite on Browser: "+ options.getBrowserName());
         return options;
     }
 
@@ -70,6 +70,7 @@ public class ExtendedDriver {
 
     private static EdgeOptions getEdgeOptions() {
         EdgeOptions options = new EdgeOptions();
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         options.setAcceptInsecureCerts(true);
         options.addArguments("--start-maximized");
         options.addArguments("--disable-gpu");
