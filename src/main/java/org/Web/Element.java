@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,6 +19,22 @@ public class Element {
     public static Logger log = LogManager.getLogger(Element.class);
     public static WebDriverWait Wait = new WebDriverWait(driver, Duration.ofSeconds(10));;
 
+    public static WebElement above(String referenceLocator, String locatorName ){
+        return driver.findElement(RelativeLocator.with(getLocator(locatorName)).above(driver.findElement(getLocator(referenceLocator))));
+    }
+    public static WebElement below(String referenceLocator, String locatorName ){
+        return driver.findElement(RelativeLocator.with(getLocator(locatorName)).below(driver.findElement(getLocator(referenceLocator))));
+    }
+    public static WebElement toLeftOf(String referenceLocator, String locatorName ){
+        return driver.findElement(RelativeLocator.with(getLocator(locatorName)).toLeftOf(driver.findElement(getLocator(referenceLocator))));
+    }
+    public static WebElement toRightOf(String referenceLocator, String locatorName ){
+        return driver.findElement(RelativeLocator.with(getLocator(locatorName)).toRightOf(driver.findElement(getLocator(referenceLocator))));
+    }
+    public static WebElement near(String referenceLocator, String locatorName ){
+        return driver.findElement(RelativeLocator.with(getLocator(locatorName)).near(driver.findElement(getLocator(referenceLocator))));
+    }
+
     //Explicit Conditions of Type - WebElement
     public static WebElement ExpectedCondition(String locator, String expectedCondition){
 
@@ -31,7 +47,7 @@ public class Element {
     //Explicit Conditions of Type - WebElement
     public static boolean ExpectedConditions(String locator, String expectedCondition){
         switch (expectedCondition){
-            case "elementToBeClickable" : return Wait.until(ExpectedConditions.elementToBeSelected(getLocator(locator)));
+            case "elementToBeSelected" : return Wait.until(ExpectedConditions.elementToBeSelected(getLocator(locator)));
             default : return false;
         }
     }
