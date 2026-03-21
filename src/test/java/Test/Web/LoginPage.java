@@ -13,8 +13,8 @@ public class LoginPage extends TestRunner {
     @Test(testName = "Click Language Button", description = "Validated Language Buttion Functionality", groups = {"Sanity"})
     public static void SmokeTest() {
         log.info("Running Smoke Suite Test Cases.");
-        Element.elementToBeClickable("homepage.languagedropdown").click();
-        Element.elementToBeClickable("homepage.languagecancel").click();
+        Element.ExpectedCondition("homepage.languagedropdown","elementToBeClickable").click();
+        Element.ExpectedCondition("homepage.languagecancel","elementToBeClickable").click();
         Reporter.ReportPass("Validate Cancel Button on Language Page", "CancelButton Appeared successfully", true);
 
         Reporter.ReportPass("Validate Language Button", "Language button is clicked successfully", true);
@@ -24,8 +24,8 @@ public class LoginPage extends TestRunner {
     @Test(testName = "Regression Test", description = "Validated Language Cancel Button", groups = {"Regression"})
     public static void Regression() {
         log.info("Running Regression Suite Test Cases.");
-        Element.elementToBeClickable("homepage.searchbox").sendKeys("Washing Machine");
-        Element.elementToBeClickable("homepage.searchbutton").sendKeys("Washing Machine");
+        Element.ExpectedCondition("homepage.searchbox","elementToBeClickable").sendKeys("Washing Machine");
+        Element.ExpectedCondition("homepage.searchbutton","elementToBeClickable").sendKeys("Washing Machine");
         log.info("Regression Suite Test Cases execution completed.");
          Reporter.ReportPass("Validate Search Box", "Search successfully", true);
     }

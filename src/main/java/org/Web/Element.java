@@ -5,37 +5,51 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.List;
-import static org.Browser.ExtendedDriver.Wait;
 import static org.Browser.ExtendedDriver.driver;
 import static org.Web.ObjectRepository.locators;
 
 public class Element {
 
     public static Logger log = LogManager.getLogger(Element.class);
+    public static WebDriverWait Wait = new WebDriverWait(driver, Duration.ofSeconds(10));;
 
-    //Explicit Condition - Element to be clickable.
-    public static WebElement elementToBeClickable(String locator){
-        return Wait.until(ExpectedConditions.elementToBeClickable(getLocator(locators.getProperty(locator))));
+    //Explicit Conditions of Type - WebElement
+    public static WebElement ExpectedCondition(String locator, String expectedCondition){
+
+        switch (expectedCondition){
+            case "elementToBeClickable" : return Wait.until(ExpectedConditions.elementToBeClickable(getLocator(locator)));
+            default : return null;
+        }
+    }
+
+    //Explicit Conditions of Type - WebElement
+    public static boolean ExpectedConditions(String locator, String expectedCondition){
+        switch (expectedCondition){
+            case "elementToBeClickable" : return Wait.until(ExpectedConditions.elementToBeSelected(getLocator(locator)));
+            default : return false;
+        }
     }
 
     // Get Element against provided locator name
     public static WebElement getWebElement(String locator)  {
-        String locatorValue = locators.getProperty(locator);
-        log.info("Element Name:" + locator+ " is fetched from locators repository having value: " + locatorValue);
-        return driver.findElement(getLocator(locatorValue));
+        return driver.findElement(getLocator(locator));
     }
 
     // Get Elements against provided locator name
     public static List<WebElement> getWebElements(String locator) {
-        String locatorValue = locators.getProperty(locator);
-        log.info("Element Name:" + locator+ " is fetched from locators repository having value: " + locatorValue);
-        return driver.findElements(getLocator(locatorValue));
+        return driver.findElements(getLocator(locator));
     }
 
     public static By getLocator(String locator) {
-        String[] split = locator.split(":", 2);
+        String locatorVal = locators.getProperty(locator);
+        log.info("Element Name:{}",  locator+  " is fetched from locators repository having value: {}", locatorVal);
+        String[] split = locatorVal.split(":", 2);
         String locatorType = split[0].toLowerCase();
         String locatorValue = split[1];
         log.info("Fetching locator having type: {}", locatorType + " and  value: " + locatorValue);
