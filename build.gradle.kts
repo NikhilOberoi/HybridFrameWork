@@ -17,6 +17,9 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+    //RestAssured
+    testImplementation("io.rest-assured:rest-assured:6.0.0")
+
     // Cucumber JVM (latest compatible versions)
     testImplementation("io.cucumber:cucumber-java:7.15.0")
     testImplementation("io.cucumber:cucumber-junit-platform-engine:7.15.0")

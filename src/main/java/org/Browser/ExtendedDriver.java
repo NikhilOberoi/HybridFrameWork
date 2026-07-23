@@ -11,10 +11,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
 
 public class ExtendedDriver {
     public static Logger log = LogManager.getLogger(ExtendedDriver.class);
@@ -45,12 +46,15 @@ public class ExtendedDriver {
             case FirefoxHeadless:
                 driver = FirefoxInit(getFirefoxHeadlessOptions());
                 break;
+            case Grid:
+                driver = Grid(getChromeOptions());
+                break;
             default:
                 //Stop Execution;
                 break;
         }
-        if(driver != null)
-            DriverWait();
+        //if(driver != null)
+         //   DriverWait();
         log.info("Browser Initialized Successfully: "+ Browser.toString());
     }
 
@@ -135,5 +139,17 @@ public class ExtendedDriver {
         WebDriver firefoxDriver = new FirefoxDriver(options);
         firefoxDriver.get(CurrentUrl);
         return firefoxDriver;
+    }
+
+    // Initialize Grid setup
+    private static WebDriver Grid(ChromeOptions options) {
+        WebDriver remoteDriver = null;
+        try {
+            remoteDriver = new RemoteWebDriver(new URL("http://172.28.224.1:4444/"), options);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        remoteDriver.get(CurrentUrl);
+        return remoteDriver;
     }
 }

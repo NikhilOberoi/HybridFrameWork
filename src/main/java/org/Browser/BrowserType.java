@@ -7,5 +7,6 @@ public enum BrowserType {
     ChromeHeadless,
     Edge,
     EdgeHeadless,
-    Safari
+    Safari,
+    Grid
 }

@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class LoginPage extends TestRunner {
     public static Logger log = LogManager.getLogger(LoginPage.class);
 
-    @Test(testName = "Click Language Button", description = "Validated Language Buttion Functionality", groups = {"Sanity"})
+    @Test(testName = "Sanity", description = "Validated Language Buttion Functionality", groups = {"Sanity"})
     public static void SmokeTest() {
         log.info("Running Smoke Suite Test Cases.");
         Element.ExpectedCondition("homepage.languagedropdown","elementToBeClickable").click();
@@ -21,7 +21,7 @@ public class LoginPage extends TestRunner {
         log.info("Smoke Suite Test Cases execution completed.");
     }
 
-    @Test(testName = "Regression Test", description = "Validated Language Cancel Button", groups = {"Regression"})
+    @Test(testName = "Regression Test", description = "Validated Language Cancel Button", groups = {"Sanity"})
     public static void Regression() {
         log.info("Running Regression Suite Test Cases.");
         Element.ExpectedCondition("homepage.searchbox","elementToBeClickable").sendKeys("Washing Machine");

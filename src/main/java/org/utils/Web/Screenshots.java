@@ -1,4 +1,4 @@
-package org.Helper.Web;
+package org.utils.Web;
 
 public class Screenshots {
 }

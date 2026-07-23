@@ -56,6 +56,17 @@ public class EnvironmentInfo {
             case "firefox":
                 type =  BrowserType.Firefox;
                 break;
+            case "grid":
+                type =  BrowserType.Grid;
+                break;
+            case "edge":
+                type =  BrowserType.Edge;
+                break;
+            case "edgeheadless":
+            case "edge headless":
+            case "edge_headless":
+                type =  BrowserType.EdgeHeadless;
+                break;
             default:
                 break;
         }
